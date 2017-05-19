@@ -1,7 +1,6 @@
 const path = require('path')
 const lab = require('linco.lab')
 const Config = require('vpm-config')
-const config = new Config
 const envFiles = [
     path.join(process.env.HOME, '.env.json'),
     path.join(process.env.HOME, '.env/env.json'),
