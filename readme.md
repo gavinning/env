@@ -105,4 +105,4 @@ env.get('sms.all')
 当然了，如果你真的很有诚意，那也不是可以，骚年你可以扫面下面二维码，然后我们单聊  
 金额不用太多，几百万就行 😏  
 
-<img src="pay.jpg" width="600" style="border:4px solid #ddd" />
+<img src="https://github.com/gavinning/node-global-env/raw/master/pay.jpg" width="600" style="border:4px solid #ddd" />
