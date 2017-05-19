@@ -30,7 +30,10 @@ class Env {
     }
 
     get(key) {
-        return this.config.get(`${key}.${this.env}`)
+        return this.config.get(`${key}.${this.env}`) ||
+        this.config.get(`${key}.all`) ||
+        this.config.get(key) ||
+        this.config.get(key.replace(/\.all/, ''))
     }
 
     setEnv(dirname) {

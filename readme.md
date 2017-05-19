@@ -65,17 +65,44 @@ env.setEnv(path.join(__dirname, 'yourpath/yourenvfilename.json'))
 ```js
 // 线上线下配置自动切换
 // 你可以这样配置
-env.set('db.dev', { password: ''})
-env.set('db.test', { password: '123'})
-env.set('db.prod', { password: '456'})
+env.set('db.dev', { password: 'dev'})
+env.set('db.test', { password: 'test'})
+env.set('db.prod', { password: 'prod'})
+
+// 当然了，如果你觉得上面的方式麻烦可以像下面这么配置也可以
+env.set('db', {
+    dev: { password: 'dev'},
+    test: { password: 'test'},
+    prod: { password: 'prod'}
+})
 ```
-读取的时候就很方便了  
+查询的时候就很方便了  
 当然了，如果你要这样配置的话，建议该配置文件也加入的.gitignore忽略列表里，至于为什么？谁特么知道 =。=
 ```js
 // if env.env === 'dev'
-env.get('db') //==> { password: ''}
+env.get('db') //==> { password: 'dev'}
 // if env.env === 'test'
-env.get('db') //==> { password: '123'}
+env.get('db') //==> { password: 'test'}
 // if env.env === 'prod'
-env.get('db') //==> { password: '456'}
+env.get('db') //==> { password: 'prod'}
 ```
+看到这里很多骚年可能会有疑问了，那如果想要管理通用配置文件呢？  
+就是不管什么环境都通用的配置，虽然我很想说这类配置文件你应该单独管理  
+但是看你这么有诚意，我也不能拒绝是吧，所以你可以像下面这样玩
+```js
+env.set('sms', {password: '123'})
+// Or
+env.set('sms.all', {password: '123'})
+```
+查询方式也是两者都可以，满足你骚动的心
+```js
+env.get('sms')
+// Or
+env.get('sms.all')
+```
+---
+什么？还想要更多功能？骚年我也是有底限的人好吗！  
+当然了，如果你真的很有诚意，那也不是可以，骚年你可以扫面下面二维码，然后我们单聊  
+金额不用太多，几百万就行 😏  
+
+<img src="pay.jpg" width="600" style="border:4px solid #ddd" />
