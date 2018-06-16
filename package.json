@@ -1,6 +1,6 @@
 {
   "name": "global-env",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "全局变量管理",
   "main": "app.js",
   "scripts": {

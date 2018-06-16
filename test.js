@@ -1,6 +1,5 @@
-const env = require('./app')
-
-env.setEnv(__dirname)
+const Env = require('./app')
+const env = new Env
 
 console.log('env.env:', env.env)
 console.log('process.env.NODE_ENV:', process.env.NODE_ENV)

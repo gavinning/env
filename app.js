@@ -2,15 +2,18 @@ const path = require('path')
 const lab = require('linco.lab')
 const Config = require('vpm-config')
 const envFiles = [
-    path.join(process.env.HOME, '.env.json'),
     path.join(process.env.HOME, '.env/env.json'),
-    path.join(process.env.HOME, 'env/env.json')
+    path.join(process.env.HOME, 'env/env.json'),
+    path.join(process.env.HOME, '.env.json')
 ]
 
 class Env {
-    constructor() {
+    constructor(src) {
         this.config = new Config
-        this.config.init({})
+        if (lab.isDir(src)) envFiles.unshift(path.join(src, 'env.json'))
+        if (lab.isFile(src)) envFiles.unshift(src)
+        this.env = trys().env
+        process.env.NODE_ENV = this.env
     }
 
     isDev() {
@@ -36,16 +39,16 @@ class Env {
         this.config.get(key.replace(/\.all/, ''))
     }
 
-    setEnv(dirname) {
-        if(lab.isDir(dirname)) envFiles.unshift(path.join(dirname, '.env.json'))
-        if(lab.isFile(dirname)) envFiles.unshift(dirname)
-        this.init()
-    }
+    // setEnv(dirname) {
+    //     if(lab.isDir(dirname)) envFiles.unshift(path.join(dirname, '.env.json'))
+    //     if(lab.isFile(dirname)) envFiles.unshift(dirname)
+    //     this.init()
+    // }
 
-    init() {
-        this.env = trys().env
-        process.env.NODE_ENV = env.env
-    }
+    // init() {
+    //     this.env = trys().env
+    //     process.env.NODE_ENV = env.env
+    // }
 }
 
 function trys() {
@@ -58,7 +61,4 @@ function trys() {
     return {}
 }
 
-let env = new Env
-env.init()
-
-module.exports = env
+module.exports = Env
