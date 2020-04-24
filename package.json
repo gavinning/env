@@ -1,28 +1,29 @@
 {
-  "name": "global-env",
-  "version": "0.3.0",
-  "description": "全局变量管理",
+  "name": "@4a/env",
+  "version": "1.0.0",
+  "description": "nodejs app环境变量管理",
   "main": "app.js",
   "scripts": {
-    "test": "node test"
+    "dev": "NODE_ENV=dev node demo",
+    "testing": "NODE_ENV=testing node demo",
+    "preview": "NODE_ENV=preview node demo",
+    "production": "NODE_ENV=production node demo"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gavinning/node-global-env.git"
+    "url": "git+https://github.com/gavinning/env.git"
   },
   "keywords": [
-    "global",
     "env",
-    "env"
+    "app-env",
+    "node-env"
   ],
   "author": "gavinning",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gavinning/node-global-env/issues"
+    "url": "https://github.com/gavinning/env/issues"
   },
-  "homepage": "https://github.com/gavinning/node-global-env#readme",
+  "homepage": "https://github.com/gavinning/env#readme",
   "dependencies": {
-    "linco.lab": "^2.1.0",
-    "vpm-config": "^2.1.3"
   }
 }

@@ -1,64 +1,60 @@
-const path = require('path')
-const lab = require('linco.lab')
-const Config = require('vpm-config')
-const envFiles = [
-    path.join(process.env.HOME, '.env/env.json'),
-    path.join(process.env.HOME, 'env/env.json'),
-    path.join(process.env.HOME, '.env.json')
-]
+class AppEnv {
 
-class Env {
-    constructor(src) {
-        this.config = new Config
-        if (lab.isDir(src)) envFiles.unshift(path.join(src, 'env.json'))
-        if (lab.isFile(src)) envFiles.unshift(src)
-        this.env = trys().env
-        process.env.NODE_ENV = this.env
+    get env() {
+        return this.nodeEnv
     }
 
-    isDev() {
-        return this.env === 'dev' || this.env === 'development'
+    get nodeEnv() {
+        return process.env.NODE_ENV || 'dev'
     }
 
-    isProd() {
-        return this.env === 'prod' || this.env === 'production'
+    get isLocal() {
+        return 'local' === this.nodeEnv
     }
 
-    isTest() {
-        return this.env === 'test'
+    get isDev() {
+        return ['dev', 'local', 'mock'].includes(this.nodeEnv)
     }
 
-    set(key, value){
-        this.config.set(key, value)
+    get isTesting() {
+        return 'testing' === this.nodeEnv
     }
 
-    get(key) {
-        return this.config.get(`${key}.${this.env}`) ||
-        this.config.get(`${key}.all`) ||
-        this.config.get(key) ||
-        this.config.get(key.replace(/\.all/, ''))
+    get isPreview() {
+        return 'preview' === this.nodeEnv
     }
 
-    // setEnv(dirname) {
-    //     if(lab.isDir(dirname)) envFiles.unshift(path.join(dirname, '.env.json'))
-    //     if(lab.isFile(dirname)) envFiles.unshift(dirname)
-    //     this.init()
-    // }
+    get isProduction() {
+        return 'production' === this.nodeEnv
+    }
 
-    // init() {
-    //     this.env = trys().env
-    //     process.env.NODE_ENV = env.env
-    // }
+    get isOnline() {
+        return this.isPreview || this.isProduction
+    }
+
+    dev(callback) {
+        !this.isDev || callback()
+    }
+
+    testing(callback) {
+        !this.isTesting || callback()
+    }
+
+    preview(callback) {
+        !this.isPreview || callback()
+    }
+
+    production(callback) {
+        !this.isProduction || callback()
+    }
+
+    online(callback) {
+        !this.isPreview && !this.isProduction || callback()
+    }
+
+    get(config) {
+        return config[this.nodeEnv]
+    }
 }
 
-function trys() {
-    for(let i=0; i<envFiles.length; i++){
-        try{
-            return require(envFiles[i])
-        }
-        catch(err){}
-    }
-    return {}
-}
-
-module.exports = Env
+module.exports = new AppEnv
