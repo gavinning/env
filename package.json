@@ -1,10 +1,11 @@
 {
   "name": "@4a/env",
-  "version": "1.0.0",
-  "description": "nodejs app环境变量管理",
-  "main": "app.js",
+  "version": "2.0.0",
+  "description": "环境变量管理",
+  "main": "env.js",
   "scripts": {
     "dev": "NODE_ENV=dev node demo",
+    "test": "mocha test/*.spec.js",
     "testing": "NODE_ENV=testing node demo",
     "preview": "NODE_ENV=preview node demo",
     "production": "NODE_ENV=production node demo"
@@ -24,6 +25,8 @@
     "url": "https://github.com/gavinning/env/issues"
   },
   "homepage": "https://github.com/gavinning/env#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^7.1.2"
   }
 }

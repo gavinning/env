@@ -1,25 +1,51 @@
 Env
 ---
-Nodejs App环境变量管理
+环境变量管理
 
 ### Install
 ```sh
 npm i @4a/env
 ```
 
-### Usage
+### Usage in Nodejs
 ```js
-const appEnv = require('@4a/env')
+// process.env.NODE_ENV = 'preview'
 
+const AppEnv = require('@4a/env')
+const appEnv = new AppEnv(process.env.NODE_ENV)
 
+module.exports = appEnv
+```
+
+### Usage in FE
+```js
+// hostname = 'preview.com'
+
+import fe from '@4a/env/fe'
+import AppEnv from '@4a/env'
+
+// 根据hostname发现env
+fe.setHostname ({
+    dev: 'dev.com',
+    testing: 'test.com',
+    preview: 'preview.com',
+    // 支持配置多个域名
+    production: ['production1.com', 'production2.com', 'production3.com'],
+})
+
+export default new AppEnv(fe.env)
+```
+
+### Example
+```js
 console.log('app start on', appEnv.env)
 
-appEnv.env
-appEnv.isDev
-appEnv.isTesting
-appEnv.isPreview
-appEnv.isProduction
-appEnv.isOnline // appEnv.isPreview || appEnv.isProduction
+appEnv.env          // === 'preview'
+appEnv.isDev        // === false
+appEnv.isTesting    // === false
+appEnv.isPreview    // === true
+appEnv.isProduction // === false
+appEnv.isOnline     // === true
 
 
 appEnv.dev(() => {
@@ -41,29 +67,11 @@ appEnv.production(() => {
 appEnv.online(() => {
     console.log('online message')
 })
-```
 
-```js
-const host = {
+appEnv.get({
     dev: 'http://dev.com',
     testing: 'http://test.com',
     preview: 'http://preview.com',
     production: 'http://production.com',
-}
-
-module.exports = host[appEnv.env]
-// Or
-module.exports = appEnv.get(host)
-```
-
-### Package.json
-```json
-{
-    "scripts": {
-        "dev": "NODE_ENV=dev node app",
-        "testing": "NODE_ENV=testing node app",
-        "preview": "NODE_ENV=preview node app",
-        "production": "NODE_ENV=production node app"
-    }
-}
+})  // => 'http://preview.com'
 ```

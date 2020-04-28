@@ -1,31 +1,24 @@
+const ENV = require('./environment')
+
 class AppEnv {
-
-    get env() {
-        return this.nodeEnv
-    }
-
-    get nodeEnv() {
-        return process.env.NODE_ENV || 'dev'
-    }
-
-    get isLocal() {
-        return 'local' === this.nodeEnv
+    constructor(env) {
+        this.env = env || ENV.DEV
     }
 
     get isDev() {
-        return ['dev', 'local', 'mock'].includes(this.nodeEnv)
+        return this.env === ENV.DEV
     }
 
     get isTesting() {
-        return 'testing' === this.nodeEnv
+        return this.env === ENV.TESTING
     }
 
     get isPreview() {
-        return 'preview' === this.nodeEnv
+        return this.env === ENV.PREVIEW
     }
 
     get isProduction() {
-        return 'production' === this.nodeEnv
+        return this.env === ENV.PRODUCTION
     }
 
     get isOnline() {
@@ -53,8 +46,8 @@ class AppEnv {
     }
 
     get(config) {
-        return config[this.nodeEnv]
+        return config[this.env]
     }
 }
 
-module.exports = new AppEnv
+module.exports = AppEnv
