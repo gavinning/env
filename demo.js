@@ -7,6 +7,10 @@ appEnv.dev(() => {
     console.log('dev message')
 })
 
+appEnv.test(() => {
+    console.log('test message')
+})
+
 appEnv.testing(() => {
     console.log('testing message')
 })
@@ -27,6 +31,7 @@ appEnv.online(() => {
 console.log('env uri:',
     appEnv.get({
         dev: 'http://dev.com',
+        test: 'http://test.com',
         testing: 'http://test.com',
         preview: 'http://preview.com',
         production: 'http://production.com',

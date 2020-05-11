@@ -9,6 +9,10 @@ class AppEnv {
         return this.env === ENV.DEV
     }
 
+    get isTest() {
+        return this.env === ENV.TEST
+    }
+
     get isTesting() {
         return this.env === ENV.TESTING
     }
@@ -27,6 +31,10 @@ class AppEnv {
 
     dev(callback) {
         !this.isDev || callback()
+    }
+
+    test(callback) {
+        !this.isTest || callback()
     }
 
     testing(callback) {
