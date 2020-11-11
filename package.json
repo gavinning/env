@@ -27,6 +27,6 @@
   "homepage": "https://github.com/gavinning/env#readme",
   "dependencies": {},
   "devDependencies": {
-    "mocha": "^7.1.2"
+    "mocha": "^8.2.1"
   }
 }
