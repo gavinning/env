@@ -31,6 +31,7 @@ appEnv.online(() => {
 console.log('env uri:',
     appEnv.get({
         dev: 'http://dev.com',
+        development: 'http://development.com',
         test: 'http://test.com',
         testing: 'http://test.com',
         preview: 'http://preview.com',

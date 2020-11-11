@@ -84,6 +84,7 @@ appEnv.get({
 ```
 
 ### ENV Support
+无环境变量访问时，默认环境变量为``production``
 ```yaml
 # 
 # test和testing推荐只存在一个
@@ -94,6 +95,7 @@ appEnv.get({
 # 
 
 DEV: dev
+DEVELOPMENT: development
 TEST: test
 TESTING: testing
 PREVIEW: preview

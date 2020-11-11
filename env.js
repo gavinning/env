@@ -2,11 +2,11 @@ const ENV = require('./environment')
 
 class AppEnv {
     constructor(env) {
-        this.env = env || ENV.DEV
+        this.env = env || ENV.PRODUCTION
     }
 
     get isDev() {
-        return this.env === ENV.DEV
+        return this.env === ENV.DEV || this.env === ENV.DEVELOPMENT
     }
 
     get isTest() {
