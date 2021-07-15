@@ -11,7 +11,7 @@ npm i @4a/env
 ```js
 // process.env.NODE_ENV = 'preview'
 
-const AppEnv = require('@4a/env')
+const AppEnv = require('@4a/env').default
 const appEnv = new AppEnv(process.env.NODE_ENV)
 
 module.exports = appEnv
