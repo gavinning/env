@@ -1,14 +1,13 @@
 {
   "name": "@4a/env",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "description": "环境变量管理",
-  "main": "env.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "NODE_ENV=dev node demo",
     "test": "mocha test/*.spec.js",
-    "testing": "NODE_ENV=testing node demo",
-    "preview": "NODE_ENV=preview node demo",
-    "production": "NODE_ENV=production node demo"
+    "build": "tsc",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -27,6 +26,9 @@
   "homepage": "https://github.com/gavinning/env#readme",
   "dependencies": {},
   "devDependencies": {
-    "mocha": "^8.2.1"
+    "@types/node": "^16.3.2",
+    "mocha": "^8.2.1",
+    "nodemon": "^2.0.12",
+    "typescript": "^4.3.5"
   }
 }

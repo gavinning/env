@@ -21,8 +21,8 @@ module.exports = appEnv
 ```js
 // hostname = 'preview.com'
 
-import fe from '@4a/env/fe'
 import AppEnv from '@4a/env'
+import fe from '@4a/env/dist/fe'
 
 // 根据hostname发现env
 fe.setHostname ({

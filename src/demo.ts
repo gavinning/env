@@ -1,5 +1,5 @@
-const AppEnv = require('./env')
-const appEnv = new AppEnv(process.env.NODE_ENV)
+import AppEnv from './index'
+const appEnv = new AppEnv(process.env.NODE_ENV || 'production')
 
 console.log('app start on', appEnv.env)
 
@@ -26,7 +26,6 @@ appEnv.production(() => {
 appEnv.online(() => {
     console.log('online message')
 })
-
 
 console.log('env uri:',
     appEnv.get({

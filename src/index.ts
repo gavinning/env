@@ -1,7 +1,11 @@
-const ENV = require('./environment')
+/// <reference path="../global.d.ts" />
 
-class AppEnv {
-    constructor(env) {
+import ENV from './environment'
+
+export default class AppEnv {
+    env: string
+
+    constructor(env: string) {
         this.env = env || ENV.PRODUCTION
     }
 
@@ -29,33 +33,31 @@ class AppEnv {
         return this.isPreview || this.isProduction
     }
 
-    dev(callback) {
+    dev(callback: Callback) {
         !this.isDev || callback()
     }
 
-    test(callback) {
+    test(callback: Callback) {
         !this.isTest || callback()
     }
 
-    testing(callback) {
+    testing(callback: Callback) {
         !this.isTesting || callback()
     }
 
-    preview(callback) {
+    preview(callback: Callback) {
         !this.isPreview || callback()
     }
 
-    production(callback) {
+    production(callback: Callback) {
         !this.isProduction || callback()
     }
 
-    online(callback) {
-        !this.isPreview && !this.isProduction || callback()
+    online(callback: Callback) {
+        (!this.isPreview && !this.isProduction) || callback()
     }
 
-    get(config) {
+    get(config: any) {
         return config[this.env]
     }
 }
-
-module.exports = AppEnv
