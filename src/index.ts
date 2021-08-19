@@ -1,8 +1,8 @@
-/// <reference path="../global.d.ts" />
-
 import ENV from './environment'
 
-export default class AppEnv {
+type Callback<T = any> = (...arg: T[]) => void
+
+export class Env {
     env: string
 
     constructor(env: string) {
@@ -61,3 +61,5 @@ export default class AppEnv {
         return config[this.env]
     }
 }
+
+export default Env

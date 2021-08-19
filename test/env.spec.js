@@ -1,7 +1,7 @@
 const assert = require('assert')
-const AppEnv = require('../env')
+const { Env } = require('..')
 
-describe('class AppEnv test', () => {
+describe('class Env test', () => {
 
     function envMessage(env) {
         switch(env) {
@@ -13,7 +13,7 @@ describe('class AppEnv test', () => {
     }
 
     it('test dev', () => {
-        const appEnv = new AppEnv('dev')
+        const appEnv = new Env('dev')
         assert.equal(true, appEnv.isDev)
         assert.equal('dev.result', envMessage(appEnv.env))
 
@@ -24,7 +24,7 @@ describe('class AppEnv test', () => {
     })
 
     it('test testing', () => {
-        const appEnv = new AppEnv('testing')
+        const appEnv = new Env('testing')
         assert.equal(true, appEnv.isTesting)
         assert.equal('testing.result', envMessage(appEnv.env))
 
@@ -35,7 +35,7 @@ describe('class AppEnv test', () => {
     })
 
     it('test online, preview', () => {
-        const appEnv = new AppEnv('preview')
+        const appEnv = new Env('preview')
         assert.equal(true, appEnv.isPreview)
         assert.equal(true, appEnv.isOnline)
         assert.equal('preview.result', envMessage(appEnv.env))
@@ -46,7 +46,7 @@ describe('class AppEnv test', () => {
     })
 
     it('test online, production', () => {
-        const appEnv = new AppEnv('production')
+        const appEnv = new Env('production')
         assert.equal(true, appEnv.isProduction)
         assert.equal(true, appEnv.isOnline)
         assert.equal('production.result', envMessage(appEnv.env))

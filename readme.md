@@ -5,23 +5,20 @@ Env
 ### Install
 ```sh
 npm i @4a/env
+yarn add @4a/env
 ```
 
 ### Usage in Nodejs
 ```js
-// process.env.NODE_ENV = 'preview'
-
-const AppEnv = require('@4a/env').default
-const appEnv = new AppEnv(process.env.NODE_ENV)
-
-module.exports = appEnv
+const { Env } = require('@4a/env')
+module.exports = new Env(process.env.NODE_ENV)
 ```
 
 ### Usage in FE
 ```js
 // hostname = 'preview.com'
 
-import AppEnv from '@4a/env'
+import Env from '@4a/env'
 import fe from '@4a/env/dist/fe'
 
 // 根据hostname发现env
@@ -31,7 +28,7 @@ fe.setHostname ({
     testing: 'test.com',
     preview: 'preview.com',
     // 支持配置多个域名
-    production: ['production1.com', 'production2.com', 'production3.com'],
+    production: ['production1.com', 'production2.com'],
 })
 
 export default new AppEnv(fe.env)

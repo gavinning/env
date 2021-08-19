@@ -1,11 +1,11 @@
 {
   "name": "@4a/env",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "环境变量管理",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "mocha test/*.spec.js",
+    "dev": "tsc --watch",
     "build": "tsc",
     "prepublish": "npm run build"
   },
